@@ -75,11 +75,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 let mainWindow;
 function onReady() {
     mainWindow = new __WEBPACK_IMPORTED_MODULE_0_electron__["BrowserWindow"]({
-        width: 800,
-        height: 600,
+        width: 1080,
+        height: 720,
         frame: false,
         show: false,
-        useContentSize: true
+        useContentSize: true,
+        backgroundColor: '#000',
+        enableLargerThanScreen: true
     });
     const fileName = `file://${__dirname}/index.html`;
     mainWindow.loadURL(fileName);

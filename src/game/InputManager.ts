@@ -1,5 +1,4 @@
 import * as Collections from 'typescript-collections';
-import $ from 'jquery';
 
 export enum Key {
   Enter = 13,
@@ -40,6 +39,7 @@ export class InputManager {
     event.preventDefault();
   }
   static flush() {
-    InputManager._lastPressed = $.extend({}, InputManager._pressed);
+    InputManager._lastPressed.clear();
+    InputManager._lastPressed.union(InputManager._pressed);
   }
 }

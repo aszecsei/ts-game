@@ -4,11 +4,13 @@ let mainWindow: Electron.BrowserWindow;
 
 function onReady() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1080,
+    height: 720,
     frame: false,
     show: false,
-    useContentSize: true
+    useContentSize: true,
+    backgroundColor: '#000',
+    enableLargerThanScreen: true
   });
 
   const fileName = `file://${__dirname}/index.html`;
