@@ -65,16 +65,16 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-var _electron = __webpack_require__(1);
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_electron__);
 
 let mainWindow;
 function onReady() {
-    mainWindow = new _electron.BrowserWindow({
+    mainWindow = new __WEBPACK_IMPORTED_MODULE_0_electron__["BrowserWindow"]({
         width: 800,
         height: 600,
         frame: false,
@@ -85,11 +85,12 @@ function onReady() {
     mainWindow.loadURL(fileName);
     // mainWindow.setFullScreen(true);
     mainWindow.on('ready-to-show', () => mainWindow.show());
-    mainWindow.on('close', () => _electron.app.quit());
+    mainWindow.on('close', () => __WEBPACK_IMPORTED_MODULE_0_electron__["app"].quit());
 }
-_electron.app.on('ready', () => onReady());
-_electron.app.on('window-all-closed', () => _electron.app.quit());
-console.log(`Electron Version ${_electron.app.getVersion()}`);
+__WEBPACK_IMPORTED_MODULE_0_electron__["app"].on('ready', () => onReady());
+__WEBPACK_IMPORTED_MODULE_0_electron__["app"].on('window-all-closed', () => __WEBPACK_IMPORTED_MODULE_0_electron__["app"].quit());
+console.log(`Electron Version ${__WEBPACK_IMPORTED_MODULE_0_electron__["app"].getVersion()}`);
+
 
 /***/ }),
 /* 1 */

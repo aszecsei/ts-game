@@ -1,4 +1,5 @@
 import * as Collections from 'typescript-collections';
+import $ from 'jquery';
 
 export enum Key {
   Enter = 13,
@@ -32,9 +33,11 @@ export class InputManager {
   }
   static setKeyDown(event: KeyboardEvent) {
     InputManager._pressed.add(event.keyCode);
+    event.preventDefault();
   }
   static setKeyUp(event: KeyboardEvent) {
     InputManager._pressed.remove(event.keyCode);
+    event.preventDefault();
   }
   static flush() {
     InputManager._lastPressed = $.extend({}, InputManager._pressed);

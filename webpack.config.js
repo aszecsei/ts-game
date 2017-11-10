@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 const commonConfig = {
   output: {
@@ -19,7 +20,7 @@ const commonConfig = {
       },
       {
         test: /\.tsx?$/,
-        loader: ['babel-loader', 'ts-loader']
+        loader: ['ts-loader']
       },
       {
         test: /\.js$/,
@@ -29,10 +30,6 @@ const commonConfig = {
           typeCheck: true,
           emitErrors: true
         }
-      },
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader'
       }
     ]
   },
@@ -61,7 +58,7 @@ module.exports = [
       entry: { gui: './src/gui.ts' },
       plugins: [
         new HtmlWebpackPlugin(),
-        new webpack.optimize.UglifyJsPlugin()
+        new MinifyPlugin()
       ]
     },
     commonConfig
