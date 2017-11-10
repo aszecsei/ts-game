@@ -1,6 +1,6 @@
-import { InputManager, Key } from './InputManager';
+import { InputManager, Key } from './input_manager';
 import { remote } from 'electron';
-import { Screen } from './Screen';
+import { Screen } from './screen';
 import $ from 'jquery';
 
 const debug = true;

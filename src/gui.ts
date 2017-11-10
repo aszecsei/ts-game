@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { Game } from './game/Game';
+import { Game } from './game/game';
 
 $(function() {
   $('body').html('<canvas id="canvas"></canvas>');
