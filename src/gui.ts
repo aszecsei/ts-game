@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-$('body').html(`<canvas id="canvas"></canvas>`);
+$('body').html('<canvas id="canvas"></canvas>');
 const qCanvas = $('#canvas');
 qCanvas.css('background', 'black');
 qCanvas.css('margin', '0 0 0 0');

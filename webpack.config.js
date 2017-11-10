@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const commonConfig = {
   output: {
@@ -48,7 +49,9 @@ module.exports = [
   Object.assign(
     {
       target: 'electron-main',
-      entry: { main: './src/main.ts' }
+      entry: { main: './src/main.ts' },
+      plugins: [
+      ]
     },
     commonConfig
   ),
@@ -57,7 +60,8 @@ module.exports = [
       target: 'electron-renderer',
       entry: { gui: './src/gui.ts' },
       plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin(),
+        new webpack.optimize.UglifyJsPlugin()
       ]
     },
     commonConfig
