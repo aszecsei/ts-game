@@ -1,0 +1,41 @@
+{
+  "name": "ts-game",
+  "version": "0.0.1",
+  "description": "A game made with electron and typescript",
+  "main": "index.js",
+  "author": "Alic Szecsei",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/jest": "^21.1.5",
+    "@types/jquery": "^3.2.16",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015-node": "^6.1.1",
+    "babel-preset-react": "^6.24.1",
+    "electron": "1.7.9",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.2.1",
+    "jquery": "^3.2.1",
+    "sizzle": "^2.3.3",
+    "standard": "^10.0.3",
+    "standard-loader": "^6.0.1",
+    "ts-loader": "^3.1.1",
+    "tslint": "^5.8.0",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.6.1",
+    "typescript-collections": "^1.2.5",
+    "webpack": "^3.8.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "prestart": "yarn run build",
+    "start": "electron ./dist/main.js",
+    "pretest": "webpack --config webpack.tests.config.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testRegex": "/__tests__/.*\\.jsx?"
+  }
+}
