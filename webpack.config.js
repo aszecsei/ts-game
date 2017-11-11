@@ -30,6 +30,10 @@ const commonConfig = {
           typeCheck: true,
           emitErrors: true
         }
+      },
+      {
+        test: /\.glsl$/,
+        loader: 'webpack-glsl'
       }
     ]
   },

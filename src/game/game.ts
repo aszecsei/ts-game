@@ -75,10 +75,10 @@ export class Game {
 
   GameLoop = (ts: number) => {
     this.ctx.clearRect(0,0, this.width, this.height);
-    if (InputManager.isDown(Key.ESC)) {
+    if (InputManager.isDown(Key.ESCAPE)) {
       remote.app.quit();
     }
-    if (InputManager.pressed(Key.SPACE)) {
+    if (InputManager.pressed(Key.S)) {
       Game.ToggleFullscreen();
     }
     let delta = 0;
