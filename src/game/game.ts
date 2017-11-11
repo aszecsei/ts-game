@@ -78,7 +78,7 @@ export class Game {
     if (InputManager.isDown(Key.ESCAPE)) {
       remote.app.quit();
     }
-    if (InputManager.pressed(Key.S)) {
+    if (InputManager.pressed(Key.SPACE)) {
       Game.ToggleFullscreen();
     }
     let delta = 0;
