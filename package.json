@@ -9,6 +9,7 @@
   "devDependencies": {
     "@types/jest": "^21.1.5",
     "@types/jquery": "^3.2.16",
+    "@types/webgl-ext": "^0.0.29",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",

@@ -4,7 +4,7 @@ import { Game } from './game/game';
 $(function() {
   $('body').html('<canvas id="canvas"></canvas>');
   const qCanvas = $('#canvas');
-  qCanvas.css('background', 'black');
+  qCanvas.css('background', 'white');
   qCanvas.css('margin', '0 0 0 0');
   qCanvas.width('100vw');
   qCanvas.height('100vh');

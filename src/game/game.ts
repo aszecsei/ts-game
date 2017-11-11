@@ -12,30 +12,38 @@ export class Game {
   private static _isFullscreen = false;
   width: number;
   height: number;
-  ctx: CanvasRenderingContext2D;
+  gl: WebGLRenderingContext;
   private fpsList = [0];
   private currentScreen: Screen;
   private last: number = -1;
-  private constructor(ctx: CanvasRenderingContext2D) {
+  private constructor(gl: WebGLRenderingContext) {
     let s = remote.getCurrentWindow().getSize();
     this.width = s[0];
     this.height = s[1];
-    this.ctx = ctx;
+    this.gl = gl;
 
     window.addEventListener('keyup', InputManager.setKeyUp);
     window.addEventListener('keydown', InputManager.setKeyDown);
 
-    this.ctx.canvas.width = this.width;
-    this.ctx.canvas.height = this.height;
+    this.gl.canvas.width = this.width;
+    this.gl.canvas.height = this.height;
 
-    if (window.devicePixelRatio) {
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    if (debug) {
+      $('body').append('<div id="overlay"></div>');
+      const overlay = $('#overlay');
+      overlay.css('position', 'absolute');
+      overlay.css('left', '10px');
+      overlay.css('top', '10px');
+      overlay.css('background-color', 'rgba(0, 0, 0, 0.7');
+      overlay.css('color', 'white');
+      overlay.css('font-family', 'monospace');
+      overlay.css('padding', '1em');
     }
   }
   static Instance(): Game {
     if (!Game._instance) {
-      const ctx = ($('#canvas')[0] as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
-      Game._instance = new Game(ctx);
+      const gl = ($('#canvas')[0] as HTMLCanvasElement).getContext('webgl');
+      Game._instance = new Game(gl);
     }
     return Game._instance;
   }
@@ -61,11 +69,10 @@ export class Game {
     }
     remote.getCurrentWindow().center();
     const scale = window.devicePixelRatio || 1;
-    Game._instance.ctx.canvas.width = Game._instance.width * scale;
-    Game._instance.ctx.canvas.height = Game._instance.height * scale;
-    $(Game._instance.ctx.canvas).width(Game._instance.width);
-    $(Game._instance.ctx.canvas).height(Game._instance.height);
-    Game._instance.ctx.scale(scale, scale);
+    Game._instance.gl.canvas.width = Game._instance.width * scale;
+    Game._instance.gl.canvas.height = Game._instance.height * scale;
+    $(Game._instance.gl.canvas).width(Game._instance.width);
+    $(Game._instance.gl.canvas).height(Game._instance.height);
   }
 
   Start() {
@@ -74,7 +81,7 @@ export class Game {
   }
 
   GameLoop = (ts: number) => {
-    this.ctx.clearRect(0,0, this.width, this.height);
+    this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT | this.gl.STENCIL_BUFFER_BIT);
     if (InputManager.isDown(Key.ESCAPE)) {
       remote.app.quit();
     }
@@ -89,7 +96,7 @@ export class Game {
 
     if (this.currentScreen) {
       this.currentScreen.update(delta);
-      this.currentScreen.draw(this.ctx, delta);
+      this.currentScreen.draw(this.gl, delta);
     }
 
     // FPS Counter
@@ -97,10 +104,10 @@ export class Game {
       this.fpsList.push(delta);
       if (this.fpsList.length > 10) {
         this.fpsList.shift();
-        this.ctx.fillStyle = 'white';
-        this.ctx.font = '12px Arial';
         const avgFPS = this.fpsList.reduce((x,y) => x + y, 0) / 10;
-        this.ctx.fillText('FPS: ' + (1000 / avgFPS).toFixed(3), 5, 17);
+        $('#overlay').text('FPS: ' + (1000 / avgFPS).toFixed(3));
+      } else {
+        $('#overlay').text('FPS: ...');
       }
     }
 
